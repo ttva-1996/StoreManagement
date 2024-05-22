@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StoreManagement.Domain\StoreManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

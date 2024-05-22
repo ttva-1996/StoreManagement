@@ -13,5 +13,13 @@ namespace StoreManagement.Domain.Entities
     {
         [MaxLength(200)]
         public string? Name { get; set; }
+
+        public Guid? StoreId { get; set; }
+
+        public Guid? AccountId { get; set; }
+
+        public virtual Store? Store { get; set; }
+
+        public virtual Account? Account { get; set; }
     }
 }
