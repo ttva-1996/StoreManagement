@@ -1,15 +1,15 @@
-﻿using System;
+﻿using StoreManagement.Domain.Entities;
+
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StoreManagement.Domain.Interfaces
 {
-    public interface IUnitOfWork
+    public interface IStaffRepository : IGenericRepository<Staff>
     {
-        Task<int> SaveChangesAsync();
-
-        IStaffRepository Staffs { get; }
     }
 }
