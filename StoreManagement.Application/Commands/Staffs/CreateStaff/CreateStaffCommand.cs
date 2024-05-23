@@ -8,7 +8,7 @@ using MediatR;
 
 namespace StoreManagement.Application.Commands.Staffs.CreateStaff
 {
-    public class CreateStaffCommand : IRequest<int>
+    public class CreateStaffCommand : IRequest<bool>
     {
         public string Name { get; set; }
 
