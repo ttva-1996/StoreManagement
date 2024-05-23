@@ -16,8 +16,8 @@ namespace StoreManagement.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateStaffAsync([FromBody] CreateStaffCommand command)
         {
-            var response = await _mediator.Send(command);
-            return Ok(response);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }
