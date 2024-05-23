@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+using StoreManagement.Application.Commands.Staffs.CreateStaff;
 using StoreManagement.Domain.Interfaces;
 using StoreManagement.Infrastructure.Data;
 
@@ -12,7 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<StoreManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+    Assembly.GetExecutingAssembly(),
+    typeof(CreateStaffCommandHandler).Assembly // Register from MyApplication assembly
+));
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllers();
