@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Staffs\DeleteStaff\" />
-    <Folder Include="Commands\Staffs\UpdateStaff\" />
     <Folder Include="Dtos\" />
     <Folder Include="Mappers\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
