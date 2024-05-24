@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
-  styleUrls: ['./staff-list.component.css'],
   standalone: true,
   imports: [CommonModule, HttpClientModule]
 })
