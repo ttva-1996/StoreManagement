@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoreManagement.Application.Commands.Staffs.CreateStaff;
 using StoreManagement.Application.Commands.Staffs.DeleteStaff;
 using StoreManagement.Application.Commands.Staffs.UpdateStaff;
+using StoreManagement.Application.Queries.Staffs.GetAllStaffs;
 using StoreManagement.Application.Queries.Staffs.GetStaff;
 
 namespace StoreManagement.WebApi.Controllers
@@ -13,6 +14,13 @@ namespace StoreManagement.WebApi.Controllers
     {
         public StaffController(IMediator mediator) : base(mediator)
         {
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<GetAllStaffsQueryResult>>> GetAllStaffs()
+        {
+            var results = await _mediator.Send(new GetAllStaffsQuery());
+            return Ok(results);
         }
 
         [HttpGet("{id}")]

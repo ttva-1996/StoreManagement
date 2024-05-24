@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediatR;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StoreManagement.Application.Queries.Staffs.GetAllStaffs
 {
-    internal class GetAllStaffsQuery
+    public class GetAllStaffsQuery : IRequest<IEnumerable<GetAllStaffsQueryResult>>
     {
     }
 }
