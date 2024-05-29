@@ -5,6 +5,7 @@ using StoreManagement.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +54,11 @@ namespace StoreManagement.Infrastructure.Data
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+        }
+
+        public IQueryable<T> Where(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate);
         }
     }
 }

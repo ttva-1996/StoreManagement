@@ -11,5 +11,7 @@ namespace StoreManagement.Domain.Interfaces
         Task<int> SaveChangesAsync();
 
         IStaffRepository Staffs { get; }
+
+        IAccountRepository Accounts { get; }
     }
 }

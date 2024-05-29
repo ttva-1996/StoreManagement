@@ -20,5 +20,9 @@ namespace StoreManagement.Domain.Entities
 
         [MaxLength(250)]
         public string? FullName { get; set; }
+
+        public string? PasswordHash { get; set; }
+
+        public string? PasswordSalt { get; set; }
     }
 }
