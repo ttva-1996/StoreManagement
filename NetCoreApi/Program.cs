@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using StoreManagement.Application;
+using StoreManagement.Application.Middlewares;
 using StoreManagement.Domain.Interfaces;
 using StoreManagement.Infrastructure.Data;
 
@@ -101,6 +102,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware(typeof(CustomMiddleware));
 
 app.UseCors("AllowAllOrigins");
 
