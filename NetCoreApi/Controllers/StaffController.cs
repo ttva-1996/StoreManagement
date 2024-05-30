@@ -1,5 +1,6 @@
 ﻿using MediatR;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using StoreManagement.Application.Commands.Staffs.CreateStaff;
@@ -10,6 +11,7 @@ using StoreManagement.Application.Queries.Staffs.GetStaff;
 
 namespace StoreManagement.WebApi.Controllers
 {
+    [Authorize]
     public class StaffController : BaseApiController
     {
         public StaffController(IMediator mediator) : base(mediator)
