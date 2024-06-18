@@ -18,7 +18,8 @@ namespace StoreManagement.Domain.Entities
 
         public Guid? AccountId { get; set; }
 
-        public int? Code { get; set; } //Indexed column
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Code { get; set; } //Indexed column
 
         public virtual Store? Store { get; set; }
 

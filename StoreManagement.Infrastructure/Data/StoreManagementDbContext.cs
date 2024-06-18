@@ -27,16 +27,6 @@ namespace StoreManagement.Infrastructure.Data
             modelBuilder.Entity<Staff>()
                     .HasIndex(s => s.Code)
                     .IsUnique(true);
-
-            // Seeding initial user
-            PasswordHasher.CreatePasswordHash("password", out string passwordHash, out string passwordSalt);
-            modelBuilder.Entity<Account>().HasData(new Account
-            {
-                Id = new Guid("D2172B15-0CDD-47F6-A1A7-14C785619C58"),
-                Username = "testuser",
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
-            });
         }
     }
 }
