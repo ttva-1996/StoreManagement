@@ -24,6 +24,10 @@ namespace StoreManagement.Infrastructure.Data
                 .HasOne(sc => sc.Store)
                 .WithMany(s => s.Staffs);
 
+            modelBuilder.Entity<Staff>()
+                    .HasIndex(s => s.Code)
+                    .IsUnique(true);
+
             // Seeding initial user
             PasswordHasher.CreatePasswordHash("password", out string passwordHash, out string passwordSalt);
             modelBuilder.Entity<Account>().HasData(new Account
