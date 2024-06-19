@@ -16,6 +16,8 @@ namespace StoreManagement.Domain.Entities
 
         public Guid? StoreId { get; set; }
 
+        public Guid? AddressId { get; set; }
+
         public Guid? AccountId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,5 +26,7 @@ namespace StoreManagement.Domain.Entities
         public virtual Store? Store { get; set; }
 
         public virtual Account? Account { get; set; }
+
+        public virtual Address? Address { get; set; }
     }
 }

@@ -14,6 +14,10 @@ namespace StoreManagement.Domain.Entities
         [MaxLength(200)]
         public string? Name { get; set; }
 
+        public Guid? AddressId { get; set; }
+
+        public virtual Address? Address { get; set; }
+
         public virtual ICollection<Staff>? Staffs { get; set; }
     }
 }
