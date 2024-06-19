@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 using StoreManagement.Domain.Entities;
 using StoreManagement.Domain.Services;
@@ -27,6 +28,8 @@ namespace StoreManagement.Infrastructure.Data
             modelBuilder.Entity<Staff>()
                     .HasIndex(s => s.Code)
                     .IsUnique(true);
+
+            modelBuilder.Entity<Staff>().Property(s => s.Code).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }
