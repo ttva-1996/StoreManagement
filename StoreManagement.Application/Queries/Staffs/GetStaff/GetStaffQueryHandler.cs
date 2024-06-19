@@ -1,12 +1,9 @@
 ﻿using MediatR;
 
-using StoreManagement.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StoreManagement.Application.Dtos;
+using StoreManagement.Domain.Interfaces;
 
 namespace StoreManagement.Application.Queries.Staffs.GetStaff
 {
@@ -21,19 +18,32 @@ namespace StoreManagement.Application.Queries.Staffs.GetStaff
 
         public async Task<GetStaffQueryResult> Handle(GetStaffQuery request, CancellationToken cancellationToken)
         {
-            var staff = await _unitOfWork.Staffs.GetByIdAsync(request.Id);
+            var staff = await _unitOfWork.Staffs
+                .Where(s => s.Id == request.Id)
+                .Include(s => s.Address).ThenInclude(s => s.Country)
+                .AsNoTracking()
+                .Select(s => new GetStaffQueryResult
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Address = s.Address == null ? null : new AddressDto
+                    {
+                        Detail = s.Address.Detail,
+                        CountryId = s.Address.CountryId,
+                        Country = s.Address.Country == null ? null : new CountryDto
+                        {
+                            Id = s.Address.Country.Id,
+                            Name = s.Address.Country.Nicename,
+                        }
+                    }
+                }).FirstOrDefaultAsync(cancellationToken);
+
             if (staff == null)
             {
                 return null;
             }
 
-            var response = new GetStaffQueryResult
-            {
-                Id = staff.Id,
-                Name = staff.Name
-            };
-
-            return response;
+            return staff;
         }
     }
 }
