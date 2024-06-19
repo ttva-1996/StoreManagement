@@ -19,9 +19,9 @@ namespace StoreManagement.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetAllStaffsQueryResult>>> GetAllStaffs()
+        public async Task<ActionResult<IEnumerable<GetAllStaffsQueryResult>>> GetAllStaffs([FromQuery] GetAllStaffsQuery query)
         {
-            var results = await _mediator.Send(new GetAllStaffsQuery());
+            var results = await _mediator.Send(query);
             return Ok(results);
         }
 

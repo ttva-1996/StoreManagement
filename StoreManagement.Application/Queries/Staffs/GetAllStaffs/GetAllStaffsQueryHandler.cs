@@ -23,14 +23,22 @@ namespace StoreManagement.Application.Queries.Staffs.GetAllStaffs
 
         public async Task<IEnumerable<GetAllStaffsQueryResult>> Handle(GetAllStaffsQuery request, CancellationToken cancellationToken)
         {
-            var staffs = await _unitOfWork.Staffs
+            var query = _unitOfWork.Staffs
                 .GetAll()
-                .AsNoTracking()
+                .AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(request.SearchText))
+            {
+                query = query.Where(s => s.Name.Contains(request.SearchText));
+            }
+
+            var staffs = await query
                 .Select(s => new GetAllStaffsQueryResult
                 {
                     Id = s.Id,
                     Name = s.Name,
-                }).ToListAsync(cancellationToken);
+                })
+                .ToListAsync(cancellationToken);
 
             return staffs;
         }

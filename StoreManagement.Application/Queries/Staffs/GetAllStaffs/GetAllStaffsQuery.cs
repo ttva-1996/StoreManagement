@@ -10,5 +10,6 @@ namespace StoreManagement.Application.Queries.Staffs.GetAllStaffs
 {
     public class GetAllStaffsQuery : IRequest<IEnumerable<GetAllStaffsQueryResult>>
     {
+        public string? SearchText { get; set; }
     }
 }
