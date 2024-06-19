@@ -11,5 +11,6 @@ namespace StoreManagement.Domain.Interfaces
 {
     public interface IStaffRepository : IGenericRepository<Staff>
     {
+        Task<Staff> GetStaffByIdAsync(Guid id);
     }
 }

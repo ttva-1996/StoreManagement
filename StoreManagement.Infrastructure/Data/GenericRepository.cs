@@ -14,7 +14,7 @@ namespace StoreManagement.Infrastructure.Data
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        internal DbSet<T> _dbSet;
 
         public GenericRepository(DbContext context)
         {

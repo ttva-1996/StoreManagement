@@ -9,9 +9,9 @@ namespace StoreManagement.Application.Commands.Staffs.CreateStaff
     {
         public string Name { get; set; }
 
-        public AddressDto Address { get; set; }
+        public UpdateAddressDto Address { get; set; }
 
-        public CreateStaffCommand(string name, AddressDto address)
+        public CreateStaffCommand(string name, UpdateAddressDto address)
         {
             Name = name;
             Address = address;

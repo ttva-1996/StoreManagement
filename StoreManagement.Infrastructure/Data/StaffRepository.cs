@@ -1,17 +1,21 @@
-﻿using StoreManagement.Domain.Entities;
-using StoreManagement.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StoreManagement.Domain.Entities;
+using StoreManagement.Domain.Interfaces;
 
 namespace StoreManagement.Infrastructure.Data
 {
     public class StaffRepository : GenericRepository<Staff>, IStaffRepository
     {
         public StaffRepository(StoreManagementDbContext dbContext) : base(dbContext) { }
+
+        public Task<Staff> GetStaffByIdAsync(Guid id)
+        {
+            var staff = _dbSet
+                .Include(s => s.Address)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            return staff;
+        }
     }
 }

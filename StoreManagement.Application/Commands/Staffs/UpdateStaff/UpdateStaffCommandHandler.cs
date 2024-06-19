@@ -1,13 +1,6 @@
 ﻿using MediatR;
 
-using StoreManagement.Domain.Entities;
 using StoreManagement.Domain.Interfaces;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManagement.Application.Commands.Staffs.UpdateStaff
 {
@@ -22,9 +15,16 @@ namespace StoreManagement.Application.Commands.Staffs.UpdateStaff
 
         public async Task<bool> Handle(UpdateStaffCommand request, CancellationToken cancellationToken)
         {
-            var staff = await _unitOfWork.Staffs.GetByIdAsync(request.Id) ?? throw new KeyNotFoundException("Staff not found");
+            var staff = await _unitOfWork.Staffs.GetStaffByIdAsync(request.Id) ?? throw new KeyNotFoundException("Staff not found");
 
             staff.Name = request.Name;
+
+            if (request.Address != null)
+            {
+                //staff.Address.Detail = request.Address.Detail;
+                //staff.Address.CountryId = request.Address.CountryId;
+            }
+
             await _unitOfWork.Staffs.UpdateAsync(staff);
 
             return true;
