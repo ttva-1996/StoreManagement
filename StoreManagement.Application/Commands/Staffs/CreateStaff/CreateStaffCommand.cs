@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
+
+using StoreManagement.Application.Dtos;
 
 
 namespace StoreManagement.Application.Commands.Staffs.CreateStaff
@@ -12,9 +9,12 @@ namespace StoreManagement.Application.Commands.Staffs.CreateStaff
     {
         public string Name { get; set; }
 
-        public CreateStaffCommand(string name)
+        public AddressDto Address { get; set; }
+
+        public CreateStaffCommand(string name, AddressDto address)
         {
             Name = name;
+            Address = address;
         }
     }
 }

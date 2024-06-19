@@ -3,12 +3,6 @@
 using StoreManagement.Domain.Entities;
 using StoreManagement.Domain.Interfaces;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace StoreManagement.Application.Commands.Staffs.CreateStaff
 {
     public class CreateStaffCommandHandler : IRequestHandler<CreateStaffCommand, bool>
@@ -22,13 +16,27 @@ namespace StoreManagement.Application.Commands.Staffs.CreateStaff
 
         public async Task<bool> Handle(CreateStaffCommand request, CancellationToken cancellationToken)
         {
-            var staff = new Staff()
+            try
             {
-                Name = request.Name
-            };
+                var staff = new Staff
+                {
+                    Name = request.Name,
+                    Address = new Address
+                    {
+                        CountryId = request.Address.CountryId,
+                        Detail = request.Address.Detail,
+                    }
+                };
 
-            await _unitOfWork.Staffs.AddAsync(staff);
-            return true;
+                await _unitOfWork.Staffs.AddAsync(staff);
+                await _unitOfWork.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
