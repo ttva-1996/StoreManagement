@@ -15,5 +15,7 @@ namespace StoreManagement.Domain.Interfaces
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         IQueryable<T> Where(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetAll();
+        IQueryable<T> FromSqlRaw(string sql, params object[] parameters);
     }
 }

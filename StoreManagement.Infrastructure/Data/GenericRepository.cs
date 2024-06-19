@@ -60,5 +60,15 @@ namespace StoreManagement.Infrastructure.Data
         {
             return _dbSet.Where(predicate);
         }
+
+        public IQueryable<T> GetAll()
+        {
+            return _dbSet.AsQueryable();
+        }
+
+        public IQueryable<T> FromSqlRaw(string sql, params object[] parameters)
+        {
+            return _dbSet.FromSqlRaw(sql, parameters);
+        }
     }
 }
