@@ -29,8 +29,6 @@ namespace StoreManagement.Application.Commands.Staffs.CreateStaff
                 };
 
                 await _unitOfWork.Staffs.AddAsync(staff);
-                await _unitOfWork.SaveChangesAsync();
-
                 return true;
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 
+using StoreManagement.Application.Dtos;
 using StoreManagement.Domain.Interfaces;
 
 using System;
@@ -25,6 +26,7 @@ namespace StoreManagement.Application.Queries.Staffs.GetAllStaffs
         {
             var query = _unitOfWork.Staffs
                 .GetAll()
+                .Include(s => s.Address).ThenInclude(s => s.Country)
                 .AsNoTracking();
 
             if (!string.IsNullOrWhiteSpace(request.SearchText))
@@ -37,6 +39,16 @@ namespace StoreManagement.Application.Queries.Staffs.GetAllStaffs
                 {
                     Id = s.Id,
                     Name = s.Name,
+                    Address = s.Address == null ? null : new AddressDto
+                    {
+                        Detail = s.Address.Detail,
+                        CountryId = s.Address.CountryId,
+                        Country = s.Address.Country == null ? null : new CountryDto
+                        {
+                            Id = s.Address.Country.Id,
+                            Name = s.Address.Country.Nicename,
+                        }
+                    }
                 })
                 .ToListAsync(cancellationToken);
 

@@ -11,5 +11,7 @@ namespace StoreManagement.Application.Dtos
         public double? Latitude { get; set; }
 
         public double? Longitude { get; set; }
+
+        public CountryDto Country { get; set; }
     }
 }
