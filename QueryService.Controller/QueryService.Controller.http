@@ -1,6 +1,0 @@
-@QueryService.Controller_HostAddress = http://localhost:5124
-
-GET {{QueryService.Controller_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
