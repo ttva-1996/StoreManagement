@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Configurations\" />
-    <Folder Include="Migrations\" />
+    <Folder Include="Migrations\Scripts\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -30,6 +30,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StoreManagement.Domain\StoreManagement.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Migrations\StaticData\countries.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
