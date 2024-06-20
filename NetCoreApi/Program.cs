@@ -18,7 +18,7 @@ builder.Services.AddDbContext<StoreManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<ICommonService, CommonService>();
+builder.Services.AddTransient<ICommonService, CommonService>();
 
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllers();
