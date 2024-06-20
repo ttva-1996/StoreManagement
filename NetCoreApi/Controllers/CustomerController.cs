@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using StoreManagement.Application.Commands.Customers.CreateCustomer;
 using StoreManagement.Application.Commands.Customers.UpdateCustomer;
+using StoreManagement.Application.Queries.Customers.GetAllCustomers;
 
 namespace StoreManagement.WebApi.Controllers
 {
@@ -13,6 +14,13 @@ namespace StoreManagement.WebApi.Controllers
     {
         public CustomerController(IMediator mediator) : base(mediator)
         {
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<GetAllCustomersQueryResult>>> GetAllStaffs([FromQuery] GetAllCustomersQuery query)
+        {
+            var results = await _mediator.Send(query);
+            return Ok(results);
         }
 
         [HttpPost]
