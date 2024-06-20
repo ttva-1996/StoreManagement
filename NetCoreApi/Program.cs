@@ -7,7 +7,7 @@ using StoreManagement.Application;
 using StoreManagement.Application.Middlewares;
 using StoreManagement.Domain.Interfaces;
 using StoreManagement.Infrastructure.Data;
-
+using StoreManagement.Infrastructure.Repositories;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 

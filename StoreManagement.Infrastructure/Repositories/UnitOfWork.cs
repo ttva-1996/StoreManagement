@@ -1,6 +1,7 @@
 ﻿using StoreManagement.Domain.Interfaces;
+using StoreManagement.Infrastructure.Data;
 
-namespace StoreManagement.Infrastructure.Data
+namespace StoreManagement.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
