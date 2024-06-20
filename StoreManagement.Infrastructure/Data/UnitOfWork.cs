@@ -13,9 +13,11 @@ namespace StoreManagement.Infrastructure.Data
 
         private IStaffRepository _staffRepository;
         private IAccountRepository _accountRepository;
+        private ICustomerRepository _customerRepository;
 
         public IStaffRepository Staffs { get { return _staffRepository ??= new StaffRepository(_context); } }
         public IAccountRepository Accounts { get { return _accountRepository ??= new AccountRepository(_context); } }
+        public ICustomerRepository Customers { get { return _customerRepository ??= new CustomerRepository(_context); } }
 
         public async Task<int> SaveChangesAsync()
         {

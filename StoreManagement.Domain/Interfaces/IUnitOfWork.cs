@@ -13,5 +13,7 @@ namespace StoreManagement.Domain.Interfaces
         IStaffRepository Staffs { get; }
 
         IAccountRepository Accounts { get; }
+
+        ICustomerRepository Customers { get; }
     }
 }
