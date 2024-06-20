@@ -17,7 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<StoreManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Scoped service
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Transient service
 builder.Services.AddTransient<ICommonService, CommonService>();
 
 builder.Services.AddApplicationLayer();
