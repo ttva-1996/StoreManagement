@@ -6,12 +6,6 @@ using StoreManagement.Domain.Entities;
 using StoreManagement.Domain.Interfaces;
 using StoreManagement.Domain.Services;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace StoreManagement.Application.Commands.Auth
 {
     public class RegisterCommand : IRequest<bool>
@@ -23,10 +17,12 @@ namespace StoreManagement.Application.Commands.Auth
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, bool>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICommonService _commonService;
 
-        public RegisterCommandHandler(IUnitOfWork unitOfWork)
+        public RegisterCommandHandler(IUnitOfWork unitOfWork, ICommonService commonService)
         {
             _unitOfWork = unitOfWork;
+            _commonService = commonService;
         }
 
         public async Task<bool> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -36,7 +32,7 @@ namespace StoreManagement.Application.Commands.Auth
                 throw new Exception("Username already exists.");
             }
 
-            PasswordHasher.CreatePasswordHash(request.Password, out string passwordHash, out string passwordSalt);
+            _commonService.CreatePasswordHash(request.Password, out string passwordHash, out string passwordSalt);
 
             var account = new Account
             {

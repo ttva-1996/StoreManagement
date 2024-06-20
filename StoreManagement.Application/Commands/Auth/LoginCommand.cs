@@ -24,17 +24,19 @@ namespace StoreManagement.Application.Commands.Auth
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
+        private readonly ICommonService _commonService;
 
-        public LoginCommandHandler(IUnitOfWork unitOfWork, IConfiguration configuration)
+        public LoginCommandHandler(IUnitOfWork unitOfWork, IConfiguration configuration, ICommonService commonService)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;
+            _commonService = commonService;
         }
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var account = await _unitOfWork.Accounts.Where(u => u.Username == request.Username).FirstOrDefaultAsync(cancellationToken);
-            if (account == null || !PasswordHasher.VerifyPasswordHash(request.Password, account.PasswordHash, account.PasswordSalt))
+            if (account == null || !_commonService.VerifyPasswordHash(request.Password, account.PasswordHash, account.PasswordSalt))
             {
                 throw new UnauthorizedAccessException("Invalid username or password.");
             }

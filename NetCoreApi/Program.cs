@@ -5,7 +5,9 @@ using Microsoft.OpenApi.Models;
 
 using StoreManagement.Application;
 using StoreManagement.Application.Middlewares;
+using StoreManagement.Application.Services;
 using StoreManagement.Domain.Interfaces;
+using StoreManagement.Domain.Services;
 using StoreManagement.Infrastructure.Data;
 using StoreManagement.Infrastructure.Repositories;
 using System.Text;
@@ -16,6 +18,7 @@ builder.Services.AddDbContext<StoreManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICommonService, CommonService>();
 
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllers();
