@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Commands\Customers\DeleteCustomer\" />
-    <Folder Include="Commands\Customers\UpdateCustomer\" />
     <Folder Include="Mappers\" />
   </ItemGroup>
 
