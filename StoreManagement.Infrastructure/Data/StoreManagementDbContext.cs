@@ -17,7 +17,10 @@ namespace StoreManagement.Infrastructure.Data
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Store> Stores { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +32,12 @@ namespace StoreManagement.Infrastructure.Data
                     .HasIndex(s => s.Code)
                     .IsUnique(true);
 
+            modelBuilder.Entity<Customer>()
+               .HasIndex(s => s.Code)
+               .IsUnique(true);
+
             modelBuilder.Entity<Staff>().Property(s => s.Code).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            modelBuilder.Entity<Customer>().Property(s => s.Code).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         }
     }
 }
