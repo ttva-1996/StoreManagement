@@ -17,5 +17,6 @@ namespace StoreManagement.Domain.Interfaces
         IQueryable<T> Where(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetAll();
         IQueryable<T> FromSqlRaw(string sql, params object[] parameters);
+        Task<int> ExecuteSqlRawAsync(string sql, params object[] parameters);
     }
 }

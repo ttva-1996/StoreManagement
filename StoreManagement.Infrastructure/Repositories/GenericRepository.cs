@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using StoreManagement.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StoreManagement.Infrastructure.Repositories
 {
@@ -67,6 +64,11 @@ namespace StoreManagement.Infrastructure.Repositories
         public IQueryable<T> FromSqlRaw(string sql, params object[] parameters)
         {
             return _dbSet.FromSqlRaw(sql, parameters);
+        }
+
+        public async Task<int> ExecuteSqlRawAsync(string sql, params object[] parameters)
+        {
+            return await _context.Database.ExecuteSqlRawAsync(sql, parameters);
         }
     }
 }
