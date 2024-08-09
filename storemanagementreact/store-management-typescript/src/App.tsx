@@ -1,5 +1,6 @@
 // src/App.tsx
 import React, { Component } from 'react';
+import StaffComponent from './pages/StaffComponent';
 
 interface AppProps {
   title: string;
@@ -23,13 +24,7 @@ class App extends Component<AppProps, AppState> {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>{this.props.title}</h1>
-          <p>Counter: {this.state.counter}</p>
-          <button onClick={this.incrementCounter}>Increment</button>
-        </header>
-      </div>
+     <StaffComponent/>
     );
   }
 }
