@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App />
+    <App title="Welcome to React with TypeScript!"/>
   </React.StrictMode>
 );
