@@ -41,7 +41,7 @@ class LoginComponent extends Component<LoginProps, LoginState> {
         alert("Login successful!");
 
         // Navigate to staff page
-        this.props.navigate(ROUTE.Staff);
+        this.props.navigate(ROUTE.Home);
       } else {
         this.setState({ error: "Invalid username or password" });
       }
