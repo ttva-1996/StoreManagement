@@ -1,6 +1,7 @@
 // src/App.tsx
 import React, { Component } from 'react';
 import StaffComponent from './pages/staff/StaffComponent';
+import LoginComponent from './pages/auth/LoginComponent';
 
 interface AppProps {
   title: string;
@@ -24,7 +25,7 @@ class App extends Component<AppProps, AppState> {
 
   render() {
     return (
-     <StaffComponent/>
+     <LoginComponent/>
     );
   }
 }
