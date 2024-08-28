@@ -5,6 +5,7 @@ import LoginComponent from "./pages/auth/LoginComponent";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ROUTE } from "./constants/route.constant";
 import HomeComponent from "./pages/home/HomeComponent";
+import RegisterComponent from "./pages/auth/RegisterComponent";
 
 interface AppProps {
   title: string;
@@ -31,6 +32,7 @@ class App extends Component<AppProps, AppState> {
         <Routes>
           <Route path={ROUTE.Home} element={<HomeComponent />} />
           <Route path={ROUTE.Login} element={<LoginComponent />} />
+          <Route path={ROUTE.Register} element={<RegisterComponent />} />
           <Route path={ROUTE.Staff} element={<StaffComponent />} />
         </Routes>
       </Router>

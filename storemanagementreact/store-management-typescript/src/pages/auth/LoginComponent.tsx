@@ -11,7 +11,7 @@ interface LoginState {
 }
 
 interface LoginProps {
-  navigate?: any; 
+  navigate?: any;
 }
 
 class LoginComponent extends Component<LoginProps, LoginState> {
@@ -80,7 +80,10 @@ class LoginComponent extends Component<LoginProps, LoginState> {
             />
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
-          <button type="submit">Login</button>
+          <button type="submit">Login</button> &nbsp;
+          <button onClick={() => this.props.navigate(ROUTE.Register)}>
+            Register
+          </button>
         </form>
       </div>
     );
