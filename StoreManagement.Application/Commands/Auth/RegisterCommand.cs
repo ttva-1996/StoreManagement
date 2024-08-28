@@ -11,6 +11,7 @@ namespace StoreManagement.Application.Commands.Auth
     public class RegisterCommand : IRequest<bool>
     {
         public string Username { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 
@@ -37,6 +38,7 @@ namespace StoreManagement.Application.Commands.Auth
             var account = new Account
             {
                 Username = request.Username,
+                Email = request.Email,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };

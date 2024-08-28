@@ -15,6 +15,9 @@ namespace StoreManagement.Domain.Entities
         [MaxLength(100)]
         public string? Username { get; set; }
 
+        [MaxLength(100)]
+        public string? Email { get; set; }
+
         [MaxLength(500)]
         public string? Password { get; set; }
 
