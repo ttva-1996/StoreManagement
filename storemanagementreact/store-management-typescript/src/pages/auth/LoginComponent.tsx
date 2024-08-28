@@ -1,6 +1,8 @@
-import React, { ChangeEvent, Component, FormEvent } from "react";
+import { ChangeEvent, Component, FormEvent } from "react";
 import AuthServices from "../../services/auth/AuthServices";
 import { saveToken } from "../../utils/localStorage.helper";
+import { withNavigate } from "../../utils/withNavigate";
+import { ROUTE } from "../../constants/route.constant";
 
 interface LoginState {
   username: string;
@@ -8,7 +10,11 @@ interface LoginState {
   error: string;
 }
 
-class LoginComponent extends Component<{}, LoginState> {
+interface LoginProps {
+  navigate?: any; 
+}
+
+class LoginComponent extends Component<LoginProps, LoginState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -33,6 +39,9 @@ class LoginComponent extends Component<{}, LoginState> {
         const token = response.token;
         saveToken(token);
         alert("Login successful!");
+
+        // Navigate to staff page
+        this.props.navigate(ROUTE.Staff);
       } else {
         this.setState({ error: "Invalid username or password" });
       }
@@ -78,4 +87,4 @@ class LoginComponent extends Component<{}, LoginState> {
   }
 }
 
-export default LoginComponent;
+export default withNavigate(LoginComponent);
