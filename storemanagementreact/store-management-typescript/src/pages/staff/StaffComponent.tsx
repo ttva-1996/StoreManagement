@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StaffService, { Staff } from '../services/StaffServices';
+import StaffService, { Staff } from '../../services/staff/StaffServices';
 
 interface StaffComponentState {
   staffs: Staff[];
@@ -22,8 +22,8 @@ class StaffComponent extends Component<{}, StaffComponentState> {
   }
 
   loadStaffs = async () => {
-    // const staffs = await StaffService.getStaffs();
-    // this.setState({ staffs });
+    const staffs = await StaffService.getStaffs();
+    this.setState({ staffs });
   };
 
   handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

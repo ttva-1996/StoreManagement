@@ -1,6 +1,6 @@
 // src/App.tsx
 import React, { Component } from 'react';
-import StaffComponent from './pages/StaffComponent';
+import StaffComponent from './pages/staff/StaffComponent';
 
 interface AppProps {
   title: string;
