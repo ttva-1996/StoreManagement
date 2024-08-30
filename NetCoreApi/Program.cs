@@ -112,7 +112,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Register the custom middleware
 app.UseMiddleware(typeof(CustomMiddleware));
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 app.UseCors("AllowAllOrigins");
 
