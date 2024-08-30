@@ -23,6 +23,9 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Transient service
 builder.Services.AddTransient<ICommonService, CommonService>();
 
+// Singleton service
+builder.Services.AddSingleton<LoggingService>();
+
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
