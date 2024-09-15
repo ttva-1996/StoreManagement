@@ -3,15 +3,18 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using StoreManagement.Application.Authorization;
 using StoreManagement.Application.Commands.Staffs.CreateStaff;
 using StoreManagement.Application.Commands.Staffs.DeleteStaff;
 using StoreManagement.Application.Commands.Staffs.UpdateStaff;
 using StoreManagement.Application.Queries.Staffs.GetAllStaffs;
 using StoreManagement.Application.Queries.Staffs.GetStaff;
+using StoreManagement.Domain.Enums;
 
 namespace StoreManagement.WebApi.Controllers
 {
     [Authorize]
+    [HasPermission(EnumPermission.ADMIN)]
     public class StaffController : BaseApiController
     {
         public StaffController(IMediator mediator) : base(mediator)

@@ -4,12 +4,15 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 using StoreManagement.Application;
+using StoreManagement.Application.Authorization;
 using StoreManagement.Application.Middlewares;
 using StoreManagement.Application.Services;
+using StoreManagement.Domain.Enums;
 using StoreManagement.Domain.Interfaces;
 using StoreManagement.Domain.Services;
 using StoreManagement.Infrastructure.Data;
 using StoreManagement.Infrastructure.Repositories;
+
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,6 +98,23 @@ builder.Services.AddSwaggerGen(c =>
                     new List<string>()
                 }
             });
+});
+
+//Add authorization
+builder.Services.AddAuthorization(options =>
+{
+    var permissions = Enum.GetValues(typeof(EnumPermission))
+                    .Cast<EnumPermission>()
+                    .Select(e => e)
+                    .ToList();
+
+    foreach (var permission in permissions)
+    {
+        options.AddPolicy(permission.ToString(),
+            policy => policy.Requirements.Add(new PermissionRequirement(new List<EnumPermission> {
+                 permission
+            })));
+    }
 });
 
 var app = builder.Build();

@@ -2,7 +2,7 @@
 
 using StoreManagement.Domain.Enums;
 
-namespace StoreManagement.Application.Attributes;
+namespace StoreManagement.Application.Authorization;
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = false)]
 public class HasPermissionAttribute : AuthorizeAttribute
